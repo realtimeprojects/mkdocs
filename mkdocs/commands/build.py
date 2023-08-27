@@ -327,6 +327,8 @@ def build(
                 + "\n  - ".join(excluded)
             )
 
+        nav.resort()
+
         # Run `env` plugin events.
         env = config.plugins.on_env(env, config=config, files=files)
 

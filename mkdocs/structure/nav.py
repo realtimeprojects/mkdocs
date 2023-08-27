@@ -258,3 +258,15 @@ def _add_previous_and_next_links(pages: list[Page]) -> None:
     zipped = zip(bookended[:-2], pages, bookended[2:])
     for page0, page1, page2 in zipped:
         page1.previous_page, page1.next_page = page0, page2
+
+
+def _resort(items):
+    index = dict()
+    for item in items:
+        if isinstance(item, Section):
+            item.children = _resort(item.children)
+            key = item.index_page.sort_key if item.index_page else item.title
+        if isinstance(item, Page):
+            key = "##index" if item.is_index else item.sort_key
+        index[key] = item
+    return [value for (key, value) in sorted(index.items())]

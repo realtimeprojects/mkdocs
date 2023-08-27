@@ -122,6 +122,10 @@ class Page(StructureItem):
     def is_index(self) -> bool:
         return self.file.name == 'index'
 
+    @property
+    def sort_key(self) -> str:
+        return self.meta.get('sort-key', self.title) if self.meta else self.title
+
     edit_url: str | None
     """The full URL to the source page in the source repository. Typically used to
     provide a link to edit the source page. [base_url][] should not be used with this
