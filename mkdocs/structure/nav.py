@@ -27,6 +27,10 @@ class Navigation:
                 self.homepage = page
                 break
 
+    def resort(self) -> None:
+        """resort the navigation use smart sorting"""
+        self.items = _resort(self.items)
+
     homepage: Page | None
     """The [page][mkdocs.structure.pages.Page] object for the homepage of the site."""
 
